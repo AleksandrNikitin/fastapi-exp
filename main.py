@@ -26,8 +26,8 @@ def status():
 def post_message(task: Task):
 
     task_param = task.dict()
-    chat_id = task_param.chat_id
-    message = task_param.key
+    chat_id = task_param['chat_id']
+    message = task_param['key']
 
     url = f"https://api.telegram.org/bot{secret.TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
 
