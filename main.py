@@ -27,7 +27,14 @@ def post_message(task: Task):
 
     task_param = task.dict()
     chat_id = task_param['chat_id']
-    message = task_param['key']
+    key = task_param['key']
+    sum = task_param['sum']
+    priority = task_param['priority']
+    type = task_param['type']
+    status = task_param['status']
+    created = task_param['created']
+
+    alert = f"Новый {type} c {priority} приоритетом!!!\n\nhttps://jira.app.local/browse/{key}\n\n{sum}\n\n{created}"
 
     url = f"https://api.telegram.org/bot{secret.TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
 
