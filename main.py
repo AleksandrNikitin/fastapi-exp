@@ -16,7 +16,10 @@ class Task(BaseModel):
 app = FastAPI()
 
 
-@app.post("/push_task")
+@app.post("/push_task", status_code=201)
 def post_message(task: Task):
-    print(task)
-    return task
+    try:
+        pass
+        return {'result':1}
+    except:
+        return {'result':0}
