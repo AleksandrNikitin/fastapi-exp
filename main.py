@@ -13,9 +13,12 @@ class Task(BaseModel):
     status: str
     created: str
 
+
+
 app = FastAPI()
 
 
 @app.post("/push_task", status_code=201)
 def post_message(task: Task):
-    return {"result":1}
+
+    return {"result":"1"}
