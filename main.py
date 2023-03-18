@@ -3,18 +3,20 @@ from pydantic import BaseModel
 
 
 # Message class defined in Pydantic
-class Message(BaseModel):
-    channel: str
-    author: str
-    text: str
-
+class Task(BaseModel):
+    chat_id: str
+    key: str
+    sum: str
+    descr: str
+    priority: str
+    type: str
+    status: str
+    created: str
 
 app = FastAPI()
 
-@app.get("/show")
-async def root():
-    return {"message": "Hello World"}
 
-@app.post("/post_message")
-def post_message(message: Message):
-    return message
+@app.post("/push_task")
+def post_message(task: Task):
+    print(task)
+    return task
