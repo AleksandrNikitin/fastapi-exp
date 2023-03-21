@@ -30,7 +30,12 @@ async def get_status():
 async def push_task(task: Task):
     task_param = task.dict()
 
-    message = f"{emojize(':red_circle:', language='alias')}Внимание! Новый {task_param['type']}!\n" \
+    if task_param['type'] == 'Письмо':
+        title = 'Внимание! Новое Письмо!'
+    else:
+        title = f"Внимание! Новый {task_param['type']}!"
+
+    message = f"{emojize(':red_circle:', language='alias')}{title}\n" \
               f"{emojize(':bangbang:', language='alias')}{task_param['priority']} приоритет\n\n" \
               f"https://jira.app.local/browse/{task_param['key']}\n\n" \
               f"{task_param['sum']}\n\n" \
