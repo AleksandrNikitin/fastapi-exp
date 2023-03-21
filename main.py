@@ -9,12 +9,9 @@ class Task(BaseModel):
     chat_id: str
     key: str
     sum: str
-    descr: str
     priority: str
     type: str
-    status: str
     created: str
-    creator: str
 
 class Alert(BaseModel):
     chat_id: str
@@ -37,9 +34,7 @@ async def push_task(task: Task):
               f"{emojize(':bangbang:', language='alias')}{task_param['priority']} приоритет\n\n" \
               f"https://jira.app.local/browse/{task_param['key']}\n\n" \
               f"{task_param['sum']}\n\n" \
-              f"{task_param['descr']}\n\n" \
-              f"Дата создания: {task_param['created']}\n" \
-              f"Автор: {task_param['creator']}"
+              f"Дата создания: {task_param['created']}"
 
     url = f"https://api.telegram.org/bot{secret.TOKEN}/sendMessage?chat_id={task_param['chat_id']}&text={message}"
     result = requests.get(url)
